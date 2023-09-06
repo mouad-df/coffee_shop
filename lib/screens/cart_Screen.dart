@@ -41,7 +41,24 @@ class _CartScreenState extends State<CartScreen> {
                           coffee: eachCoffee,
                           onPressed: () => removeFromCart(eachCoffee),
                           icon: Icon(Icons.delete));
-                    }))
+                    })),
+                    GestureDetector(
+                      child: Container(
+                        padding: EdgeInsets.all(25),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.brown,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Pay Now",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white),),
+                        ),
+                      ),
+                    )
           ],
         ),
       )),
