@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:minllogin_ui/screens/homeScreen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,9 +20,10 @@ class LoginScreen extends StatelessWidget {
               height: 150,),
               SizedBox(height: 30,),
 
-              Text("Coffe is Life",
+              Text("Coffee is Life",
               style: TextStyle(
-                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
                 color: Colors.white),),
 
               SizedBox(height:36,) ,
@@ -35,7 +38,9 @@ class LoginScreen extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: "Email",
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(
+                    fontWeight: FontWeight.w300,  
+                    color: Colors.white),
                     border: InputBorder.none),
                 ),
               ),
@@ -50,25 +55,35 @@ class LoginScreen extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: "Password",
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white),
                     border: InputBorder.none),
                 ),
               ),
               Container(
                 alignment: Alignment.centerRight,
-                child: Text("Forgot Password?"),
+                child: Text("Forgot Password?",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
               ),
               SizedBox(height: 20,),
-              Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 25,vertical: 25),
-                decoration: BoxDecoration(
-                  color: Colors.brown,
-                  borderRadius: BorderRadius.circular(15)
+              InkWell(
+                onTap:()=> Get.to(HomeScreen()),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 25,vertical: 19),
+                  decoration: BoxDecoration(
+                    color: Colors.brown,
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  child: Text("Sign In",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white),),
                 ),
-                child: Text("Sign In",
-                style: TextStyle(color: Colors.white),),
               ),
               SizedBox(height: 14,),
               Row(
