@@ -21,7 +21,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CoffeeShop>(
-      init: CoffeeShop(),
+      
       builder: (controller) => SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(25.0),

@@ -17,6 +17,7 @@ class ShopScreen extends StatelessWidget {
   // );
 
   CoffeeShop controller = Get.find();
+  
   void addCart(Coffee coffee,BuildContext context) {
     controller.addItemToChart(coffee);
 
@@ -30,8 +31,8 @@ class ShopScreen extends StatelessWidget {
   // final CoffeeShop controller = Get.put(CoffeeShop());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: CoffeeShop(),
+    return GetBuilder<CoffeeShop>(
+      
       builder: (controller) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
