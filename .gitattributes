@@ -1,5 +1,5 @@
 *.html linguist-detectable=false
 *.cpp linguist-detectable=false
-*.CMake linguist-detectable=false
+*.cmake linguist-detectable=false
 *.c linguist-detectable=false
 *.dart linguist-detectable=true
