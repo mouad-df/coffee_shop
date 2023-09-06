@@ -1,52 +1,64 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:minllogin_ui/models/coffee.dart';
 import 'package:minllogin_ui/models/coffee_shop.dart';
-import 'package:minllogin_ui/screens/coffe_screen.dart';
+import 'package:minllogin_ui/models/mybinding.dart';
+import 'package:minllogin_ui/screens/cart_Screen.dart';
+import 'package:minllogin_ui/widgets/coffe_tile.dart';
 
-class ShopScreen extends StatefulWidget {
-  const ShopScreen({super.key});
+// ignore: must_be_immutable
+class ShopScreen extends StatelessWidget {
+  ShopScreen({super.key});
 
-  @override
-  State<ShopScreen> createState() => _ShopScreenState();
-}
+  // final controlle = Get.lazyPut(
+  //   () => CoffeeShop(),
+  // );
 
-class _ShopScreenState extends State<ShopScreen> {
-  final CoffeeShop controller = Get.put(CoffeeShop());
+  CoffeeShop controller = Get.find();
+  void addCart(Coffee coffee,BuildContext context) {
+    controller.addItemToChart(coffee);
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(title: Text("Added to Cart"));
+        });
+  }
+
+  // final CoffeeShop controller = Get.put(CoffeeShop());
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Column(
-          children: [
-            Text(
-              "How would you like your coffee",
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            GetBuilder<CoffeeShop>(
-                init: CoffeeShop(),
-                builder: (controller) {
-                  print("rebuild");
-                  return Column(children: [
-                    MaterialButton(
-                        child: Text("increment"),
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        onPressed: () {
-                          controller.increment();
-                        }),
-                    Text('${controller.counter}')
-                  ]);
-                }),
-            Expanded(
-                child: ListView.builder(
-              itemBuilder: (context, index) {},
-            ))
-          ],
+    return GetBuilder(
+      init: CoffeeShop(),
+      builder: (controller) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+            children: [
+              Text(
+                "How would you like your coffee",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Expanded(
+                  child: ListView.builder(
+                itemCount: controller.coffeShop.length,
+                itemBuilder: (context, index) {
+                  Coffee eachCoffee = controller.coffeShop[index];
+
+                  return CoffeTile(
+                    coffee: eachCoffee,
+                    onPressed: () => addCart(eachCoffee,context),
+                    icon: Icon(Icons.add),
+                  );
+                },
+              ))
+            ],
+          ),
         ),
       ),
     );
