@@ -3,6 +3,12 @@ import 'package:get/get.dart';
 import 'package:minllogin_ui/models/coffee.dart';
 
 class CoffeeShop extends GetxController {
+  RxInt counter = 0.obs;
+  void increment() {
+    counter++;
+    update();
+  }
+
   //Coffee list
   final List<Coffee> _shop = [
     Coffee(name: 'Long Balack', price: '4.10', imagePath: 'images/coffee.png'),
