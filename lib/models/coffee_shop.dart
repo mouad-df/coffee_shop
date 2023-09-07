@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minllogin_ui/models/coffee.dart';
 
@@ -18,7 +17,7 @@ class CoffeeShop extends GetxController {
     Coffee(name: 'Iced Coffee', price: '4.40', imagePath: 'images/coffee.png')
   ];
   //user cart
-  List<Coffee> _userCart = [];
+  final List<Coffee> _userCart = [];
 
   //get coffee list
 

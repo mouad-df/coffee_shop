@@ -9,13 +9,13 @@ class SquareTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
-      child: icon,
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(),
         borderRadius: BorderRadius.circular(12),
       ),
+      child: icon,
     );
   }
 }

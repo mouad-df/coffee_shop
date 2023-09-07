@@ -27,11 +27,11 @@ class _CartScreenState extends State<CartScreen> {
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            Text(
+            const Text(
               "Your Cart",
               style: TextStyle(fontSize: 20),
             ),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             Expanded(
                 child: ListView.builder(
                     itemCount: controller.userCart.length,
@@ -40,17 +40,17 @@ class _CartScreenState extends State<CartScreen> {
                       return CoffeTile(
                           coffee: eachCoffee,
                           onPressed: () => removeFromCart(eachCoffee),
-                          icon: Icon(Icons.delete));
+                          icon: const Icon(Icons.delete));
                     })),
                     GestureDetector(
                       child: Container(
-                        padding: EdgeInsets.all(25),
+                        padding: const EdgeInsets.all(25),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.brown,
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Pay Now",
                             style: TextStyle(

@@ -10,8 +10,8 @@ class CoffeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: Colors.grey[200],

@@ -2,18 +2,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:minllogin_ui/screens/homeScreen.dart';
+import 'package:minllogin_ui/screens/signup_screen.dart';
 import 'package:minllogin_ui/widgets/signin_options.dart';
 import 'package:minllogin_ui/widgets/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   final auth = FirebaseAuth.instance;
+
+  void wrongEmailMessage() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          // ignore: prefer_const_constructors
+          return AlertDialog(
+            backgroundColor: Colors.blue,
+            title: const Center(child: Text('Wrong Email')),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +43,18 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
-                  height: 30,
+                const SizedBox(
+                  height: 20,
                 ),
                 Image.asset(
                   "images/coffee.png",
                   height: 150,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
-                Text(
+                const Text(
                   "Coffee is Life",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -45,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                 ),
 
                 const SizedBox(
-                  height: 36,
+                  height: 20,
                 ),
                 // ignore: prefer_const_constructors
                 MyTextField(
@@ -77,24 +95,31 @@ class LoginScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () async {
-                    showDialog(
+                    await showDialog(
                         context: context,
                         builder: (context) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         });
                     try {
-                      var user = await auth.createUserWithEmailAndPassword(
+                      var user = await auth.signInWithEmailAndPassword(
                           email: emailController.text,
                           password: passwordController.text);
-                      Get.to(HomeScreen());
-                    } catch (e) {
-                      print(e);
+                      // if (user != null) {
+                      //   Get.to(HomeScreen());
+                      // }
+                      Get.back();
+                    } on FirebaseAuthException catch (e) {
+                      print(e.code);
+                      Get.back();
+                      if (e.code == 'user-not-found') {
+                        wrongEmailMessage();
+                      }
                     }
 
                     Get.back();
-                    Get.to(HomeScreen());
+                    
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -130,7 +155,7 @@ class LoginScreen extends StatelessWidget {
                     // ignore: prefer_const_constructors
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text("Or Continue with"),
+                      child: const Text("Or Continue with"),
                     ),
                     Expanded(
                         child: Divider(thickness: 1, color: Colors.grey[800])),
@@ -165,6 +190,32 @@ class LoginScreen extends StatelessWidget {
                       color: Colors.black,
                       size: 50,
                     ))
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Not a memeber?",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    InkWell(
+                      onTap: () => Get.to(SignUpScreen()),
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.blue),
+                      ),
+                    )
                   ],
                 )
               ],

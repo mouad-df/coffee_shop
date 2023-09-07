@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:minllogin_ui/consts/consts.dart';
 import 'package:minllogin_ui/screens/cart_Screen.dart';
 import 'package:minllogin_ui/screens/shop_Screen.dart';
@@ -24,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _screens = [
     ShopScreen(),
-    CartScreen()
+    const CartScreen()
   ];
 
   @override
