@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:minllogin_ui/screens/homeScreen.dart';
 import 'package:minllogin_ui/screens/signup_screen.dart';
 import 'package:minllogin_ui/widgets/signin_options.dart';
 import 'package:minllogin_ui/widgets/textfield.dart';
@@ -31,6 +32,19 @@ class _LoginScreenState extends State<LoginScreen> {
             title: const Center(child: Text('Wrong Email')),
           );
         });
+  }
+
+  void wrongPassMessage(){
+    showDialog(
+        context: context,
+        builder: (context) {
+          // ignore: prefer_const_constructors
+          return AlertDialog(
+            backgroundColor: Colors.blue,
+            title: const Center(child: Text('Wrong Password')),
+          );
+        });
+
   }
 
   @override
@@ -95,33 +109,31 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 InkWell(
                   onTap: () async {
-                    await showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        });
+                    // await showDialog(
+                    //     context: context,
+                    //     builder: (context) {
+                    //       return const Center(
+                    //         child: CircularProgressIndicator(),
+                    //       );
+                    //     });
                     try {
                       var user = await auth.signInWithEmailAndPassword(
                           email: emailController.text,
                           password: passwordController.text);
-                      // if (user != null) {
-                      //   Get.to(HomeScreen());
-                      // }
-                      Navigator.pop(context);
+                      if (user != null) {
+                        // Get.back();
+                        Get.to(HomeScreen());
+                      }
                     } on FirebaseAuthException catch (e) {
                       print(e.code);
-                      Navigator.pop(context);
+                      
                       if (e.code == 'user-not-found') {
                         wrongEmailMessage();
                       }
-                      if(e.code == 'user-not-found'){
-                        wrongEmailMessage();
+                      if (e.code == 'wrong-password') {
+                        wrongPassMessage();
                       }
                     }
-
-                    Get.back();
                   },
                   child: Container(
                     alignment: Alignment.center,

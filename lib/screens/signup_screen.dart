@@ -15,7 +15,17 @@ class SignUpScreen extends StatelessWidget {
 
   final auth = FirebaseAuth.instance;
 
-  
+  void passwordDontMatch(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          // ignore: prefer_const_constructors
+          return AlertDialog(
+            backgroundColor: Colors.blue,
+            title: const Center(child: Text('Password dont match')),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,26 +91,20 @@ class SignUpScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () async {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      });
+                  
                   try {
-                    if(passwordController.text ==confirmpasswordController.text ){
-                      
-                    var user = await auth.createUserWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                    Get.to(const HomeScreen());
+                    if (passwordController.text ==
+                        confirmpasswordController.text) {
+                      var user = await auth.createUserWithEmailAndPassword(
+                          email: emailController.text,
+                          password: passwordController.text);
+                      Get.to(const HomeScreen());
+                    } else {
+                      passwordDontMatch(context);
                     }
                   } catch (e) {
                     print(e);
                   }
-
-                  
                 },
                 child: Container(
                   alignment: Alignment.center,
