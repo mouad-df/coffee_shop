@@ -5,7 +5,13 @@ class MyTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
-  const MyTextField({super.key, this.controller, required this.hintText, required this.obscureText});
+  const MyTextField(
+      {super.key,
+      this.controller,
+      required this.hintText,
+      required this.obscureText, });
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +29,9 @@ class MyTextField extends StatelessWidget {
             hintText: hintText,
             hintStyle:
                 // ignore: prefer_const_constructors
-                TextStyle(
-                fontWeight: FontWeight.w300, 
-                color: Colors.black),
-            border: InputBorder.none), 
-            
-            obscureText: obscureText,
+                TextStyle(fontWeight: FontWeight.w300, color: Colors.black),
+            border: InputBorder.none),
+        obscureText: obscureText,
       ),
     );
   }

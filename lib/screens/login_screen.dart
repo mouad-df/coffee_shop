@@ -5,12 +5,15 @@ import 'package:get/get.dart';
 import 'package:minllogin_ui/screens/homeScreen.dart';
 import 'package:minllogin_ui/widgets/signin_options.dart';
 import 'package:minllogin_ui/widgets/textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                 MyTextField(
                   hintText: "Email",
                   obscureText: false,
-                  controller: usernameController,
+                  controller: emailController,
                 ),
 
                 MyTextField(
@@ -73,7 +76,26 @@ class LoginScreen extends StatelessWidget {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => Get.to(HomeScreen()),
+                  onTap: () async {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        });
+                    try {
+                      var user = await auth.createUserWithEmailAndPassword(
+                          email: emailController.text,
+                          password: passwordController.text);
+                      Get.to(HomeScreen());
+                    } catch (e) {
+                      print(e);
+                    }
+
+                    Get.back();
+                    Get.to(HomeScreen());
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     width: double.infinity,

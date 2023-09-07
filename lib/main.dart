@@ -4,10 +4,14 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:minllogin_ui/models/mybinding.dart';
 import 'package:minllogin_ui/screens/homeScreen.dart';
 import 'package:minllogin_ui/screens/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -20,7 +24,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       initialBinding: MyBiinding(),
       getPages: [
-        GetPage(name: "/", page:()=> LoginScreen()),
+        GetPage(name: "/", page: () => LoginScreen()),
       ],
     );
   }
