@@ -109,17 +109,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       // if (user != null) {
                       //   Get.to(HomeScreen());
                       // }
-                      Get.back();
+                      Navigator.pop(context);
                     } on FirebaseAuthException catch (e) {
                       print(e.code);
-                      Get.back();
+                      Navigator.pop(context);
                       if (e.code == 'user-not-found') {
+                        wrongEmailMessage();
+                      }
+                      if(e.code == 'user-not-found'){
                         wrongEmailMessage();
                       }
                     }
 
                     Get.back();
-                    
                   },
                   child: Container(
                     alignment: Alignment.center,
