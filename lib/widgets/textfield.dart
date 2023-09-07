@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final controller;
   final String hintText;
   final bool obscureText;
@@ -12,7 +13,7 @@ class MyTextField extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.grey[500],
+        color: Colors.orange[50],
         borderRadius: BorderRadius.circular(12),
       ),
       // ignore: prefer_const_constructors
@@ -21,9 +22,10 @@ class MyTextField extends StatelessWidget {
         decoration: InputDecoration(
             hintText: hintText,
             hintStyle:
+                // ignore: prefer_const_constructors
                 TextStyle(
                 fontWeight: FontWeight.w300, 
-                color: Colors.white),
+                color: Colors.black),
             border: InputBorder.none), 
             
             obscureText: obscureText,
