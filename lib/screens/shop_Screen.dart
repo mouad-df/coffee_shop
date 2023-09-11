@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minllogin_ui/models/coffee.dart';
@@ -14,29 +13,29 @@ class ShopScreen extends StatelessWidget {
   // );
 
   CoffeeShop controller = Get.find();
-  
-  void addCart(Coffee coffee,BuildContext context) {
-    controller.addItemToChart(coffee);
 
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(title: Text("Added to Cart"));
-        });
+  void addCart(
+    Coffee coffee,
+  ) {
+    controller.addItemToChart(coffee);
+    controller.increment();
+
+    Get.snackbar("product added", "you have added ${coffee.name} to the cart",
+        snackPosition: SnackPosition.TOP, duration: Duration(seconds: 2));
   }
 
   // final CoffeeShop controller = Get.put(CoffeeShop());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CoffeeShop>(
-      
+      initState: (state) => controller.increment(),
       builder: (controller) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
           child: Column(
             children: [
-              const Text(
-                "How would you like your coffee",
+              Text(
+                "How would you like your coffee ${controller.counter} ",
                 style: TextStyle(fontSize: 20),
               ),
               const SizedBox(
@@ -50,7 +49,7 @@ class ShopScreen extends StatelessWidget {
 
                   return CoffeTile(
                     coffee: eachCoffee,
-                    onPressed: () => addCart(eachCoffee,context),
+                    onPressed: () => addCart(eachCoffee),
                     icon: const Icon(Icons.add),
                   );
                 },

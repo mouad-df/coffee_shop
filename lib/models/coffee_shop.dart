@@ -2,9 +2,10 @@ import 'package:get/get.dart';
 import 'package:minllogin_ui/models/coffee.dart';
 
 class CoffeeShop extends GetxController {
-  int  counter = 0;
-  void increment() {
-    counter++;
+  var counter = 0.obs;
+  void increment() async {
+    await Future<int>.delayed(Duration(seconds: 2));
+    counter ++;
     update();
   }
 
