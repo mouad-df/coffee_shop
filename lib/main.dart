@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     // ignore: prefer_const_constructors
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      home: LoginScreen(),
       
       initialBinding: MyBiinding(),
       getPages: [

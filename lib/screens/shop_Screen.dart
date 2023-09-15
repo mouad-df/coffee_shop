@@ -28,7 +28,6 @@ class ShopScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CoffeeShop>(
-      initState: (state) => controller.increment(),
       builder: (controller) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
