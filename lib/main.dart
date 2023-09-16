@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:minllogin_ui/models/auth_screen.dart';
 import 'package:minllogin_ui/models/mybinding.dart';
+import 'package:minllogin_ui/screens/firebase_Screen.dart';
 import 'package:minllogin_ui/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
     // ignore: prefer_const_constructors
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: FirestoreSreeen(),
       
       initialBinding: MyBiinding(),
       getPages: [
-        GetPage(name: "/", page: () => const LoginScreen()),
+        GetPage(name: "/", page: () => const FirestoreSreeen()),
       ],
     );
   }

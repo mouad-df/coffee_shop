@@ -43,6 +43,7 @@ class _CartScreenState extends State<CartScreen> {
                           icon: const Icon(Icons.delete));
                     })),
                     GestureDetector(
+                      
                       child: Container(
                         padding: const EdgeInsets.all(25),
                         width: double.infinity,
