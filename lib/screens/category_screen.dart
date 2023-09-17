@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -32,16 +34,31 @@ class CategoryScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25))),
           ),
         ),
-        MaterialButton(
-          color: Colors.orange,
-          textColor: Colors.white,
-          hoverColor: Colors.black,
-          child: Text("Add"),
-          onPressed: () {
-            controller.addUser();
-            controller.fetchData();
-            controller.name.text = "";
-          },
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 35),
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            MaterialButton(
+              color: Colors.orange,
+              textColor: Colors.white,
+              hoverColor: Colors.black,
+              child: Text("Add"),
+              onPressed: () {
+                controller.addUser();
+                controller.fetchData();
+                controller.name.text = "";
+              },
+            ),
+            MaterialButton(
+              
+              color: Colors.orange,
+              textColor: Colors.white,
+              hoverColor: Colors.black,
+              child: Text("Delete last document"),
+              onPressed: () async {
+                controller.deleteData();
+              },
+            )
+          ]),
         )
       ]),
     );

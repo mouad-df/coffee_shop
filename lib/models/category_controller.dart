@@ -17,7 +17,7 @@ class CategoryController extends GetxController {
           .add({
             "name": name.text,
           })
-          .then((value) => print("user Added"))
+          .then((value) => print("user Added $value"))
           .catchError((error) => print("failed to Add user: $error"));
     } else {
       print("Enter a value");
@@ -28,6 +28,15 @@ class CategoryController extends GetxController {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("categories").get();
     data!.addAll(querySnapshot.docs);
-    
+    print(data![0].id);
+  }
+
+  deleteData() async {
+    await FirebaseFirestore.instance
+        .collection('categories')
+        .doc(data![0].id)
+        .delete()
+        .then((value) => print("document deleted"))
+        .catchError((error) => print("failed deleting document"));
   }
 }
