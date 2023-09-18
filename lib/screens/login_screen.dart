@@ -74,7 +74,11 @@ class LoginScreen extends StatelessWidget {
                       }),
 
                   InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      FirebaseAuth.instance.sendPasswordResetEmail(
+                          email: controller.emailController.text);
+                      controller.myDialog("Succes", "Check your email inbox");
+                    },
                     child: Container(
                       alignment: Alignment.centerRight,
                       // ignore: prefer_const_constructors
