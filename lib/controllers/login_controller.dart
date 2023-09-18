@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minllogin_ui/screens/homeScreen.dart';
 import 'package:minllogin_ui/screens/login_screen.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginInController extends GetxController {
   final emailController = TextEditingController();
@@ -53,6 +56,22 @@ class LoginInController extends GetxController {
     } else {
       print("Not valid");
     }
+  }
+
+  Future signINWithGoogle() async {
+    //triger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    //Obtain a new Credential
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    //Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    FirebaseAuth.instance.signInWithCredential(credential);
+    Get.off(HomeScreen());
   }
 
   @override

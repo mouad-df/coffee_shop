@@ -166,7 +166,7 @@ class SignUpScreen extends StatelessWidget {
                     icon: Text(
                   "Sign up with Google",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                )),
+                ), onTap: () {  },),
                 // ignore: prefer_const_constructors
                 SizedBox(
                   height: 7,
@@ -177,7 +177,7 @@ class SignUpScreen extends StatelessWidget {
                     icon: Text(
                   "Sign up with Facbook",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                )),
+                ), onTap: () {  },),
                 const SizedBox(
                   height: 10,
                 ),

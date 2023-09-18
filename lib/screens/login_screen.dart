@@ -139,22 +139,30 @@ class LoginScreen extends StatelessWidget {
 
                   // ignore: prefer_const_constructors
                   SquareTile(
-                      // ignore: prefer_const_constructors
-                      icon: Text(
-                    "Login with Google",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  )),
+                    // ignore: prefer_const_constructors
+                    icon: Text(
+                      "Login with Google",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    onTap: () {
+                      controller.signINWithGoogle();
+                    },
+                  ),
                   // ignore: prefer_const_constructors
                   SizedBox(
                     height: 10,
                   ),
                   // ignore: prefer_const_constructors
                   SquareTile(
-                      // ignore: prefer_const_constructors
-                      icon: Text(
-                    "Login with Facebook",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  )),
+                    // ignore: prefer_const_constructors
+                    icon: Text(
+                      "Login with Facebook",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    onTap: () {},
+                  ),
                   const SizedBox(
                     height: 10,
                   ),

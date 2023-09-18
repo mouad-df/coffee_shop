@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:minllogin_ui/models/coffee.dart';
 import 'package:minllogin_ui/models/coffee_shop.dart';
 import 'package:minllogin_ui/screens/login_screen.dart';
@@ -40,6 +41,8 @@ class ShopScreen extends StatelessWidget {
               Container(
                 child: IconButton(
                     onPressed: () async {
+                      // GoogleSignIn googleSignIn = GoogleSignIn();
+                      // googleSignIn.disconnect();
                       await FirebaseAuth.instance.signOut();
                       Get.off(() => LoginScreen());
                     },

@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
     // ignore: prefer_const_constructors
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home:(FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)? LoginScreen():HomeScreen(),
-      
+      home: (FirebaseAuth.instance.currentUser != null &&
+              FirebaseAuth.instance.currentUser!.emailVerified)
+          ? HomeScreen()
+          : LoginScreen(),
       initialBinding: MyBiinding(),
       getPages: [
         GetPage(name: "/", page: () => const FirestoreSreeen()),
