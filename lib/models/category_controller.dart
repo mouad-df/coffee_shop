@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ class CategoryController extends GetxController {
     if (name.text != "") {
       return category
           .add({
+            // 'id': FirebaseAuth.instance.currentUser!.uid,
             "name": name.text,
           })
           .then((value) => print("user Added $value"))

@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minllogin_ui/models/mybinding.dart';
 import 'package:minllogin_ui/screens/firebase_Screen.dart';
+import 'package:minllogin_ui/screens/homeScreen.dart';
 import 'package:minllogin_ui/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
     // ignore: prefer_const_constructors
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FirestoreSreeen(),
+      home:(FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)? LoginScreen():HomeScreen(),
       
       initialBinding: MyBiinding(),
       getPages: [

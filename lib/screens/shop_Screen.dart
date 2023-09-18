@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minllogin_ui/models/coffee.dart';
 import 'package:minllogin_ui/models/coffee_shop.dart';
+import 'package:minllogin_ui/screens/login_screen.dart';
 import 'package:minllogin_ui/widgets/coffe_tile.dart';
 
 // ignore: must_be_immutable
@@ -33,6 +37,14 @@ class ShopScreen extends StatelessWidget {
           padding: const EdgeInsets.all(25.0),
           child: Column(
             children: [
+              Container(
+                child: IconButton(
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      Get.off(() => LoginScreen());
+                    },
+                    icon: Icon(Icons.exit_to_app)),
+              ),
               Text(
                 "How would you like your coffee ${controller.counter} ",
                 style: TextStyle(fontSize: 20),
