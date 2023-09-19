@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:minllogin_ui/models/coffee.dart';
 import 'package:minllogin_ui/models/coffee_shop.dart';
+import 'package:minllogin_ui/screens/category_screen.dart';
 import 'package:minllogin_ui/screens/login_screen.dart';
 import 'package:minllogin_ui/widgets/coffe_tile.dart';
 
@@ -38,6 +39,14 @@ class ShopScreen extends StatelessWidget {
           padding: const EdgeInsets.all(25.0),
           child: Column(
             children: [
+              Container(
+                child: Row(children: [
+                  IconButton(
+                    onPressed: ()=>Get.to(()=>CategoryScreen()),
+                    icon:Icon(Icons.arrow_back_ios)),
+                  Text("categoryScreen")
+                  ]),
+              ),
               Container(
                 child: IconButton(
                     onPressed: () async {

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, unnecessary_import, prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +38,8 @@ class CategoryScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             MaterialButton(
               color: Colors.orange,
               textColor: Colors.white,
@@ -44,21 +47,38 @@ class CategoryScreen extends StatelessWidget {
               child: Text("Add"),
               onPressed: () {
                 controller.addUser();
-                controller.fetchData();
+
                 controller.name.text = "";
               },
             ),
             MaterialButton(
-              
               color: Colors.orange,
               textColor: Colors.white,
               hoverColor: Colors.black,
-              child: Text("Delete last document"),
+              child: Text("fetch all documents"),
               onPressed: () async {
-                controller.deleteData();
+                controller.fetchData();
               },
             )
           ]),
+        ),
+        StreamBuilder(
+          stream: controller.userStream,
+          builder: (context, snapshot){
+            if (snapshot.hasError) {
+              return Text("Error");
+            }
+            
+            return ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                          title: Text("${snapshot.data!.docs[index]["name"]}")),
+                    );
+                  });
+            
+          },
         )
       ]),
     );
